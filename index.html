@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f7faff" />
   <title>简毅科技｜让 AI 真正进入企业</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
   <style>
     :root {
       --blue: #2f63e8;
@@ -677,27 +678,22 @@
       font-weight: 700
     }
 
-    .carousel-wrap {
+    .industries-swiper {
       overflow: hidden;
-      padding: 12px 0 22px;
-      cursor: grab;
-      touch-action: pan-y
+      padding: 12px 0 44px;
     }
 
-    .carousel-wrap:active {
-      cursor: grabbing
+    .industries-swiper .swiper-pagination-bullet {
+      background: var(--blue2);
+      opacity: .35
     }
 
-    .carousel {
-      display: flex;
-      width: 100%;
-      gap: 20px;
-      transition: transform .72s cubic-bezier(.2, .8, .2, 1);
-      will-change: transform
+    .industries-swiper .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: var(--blue)
     }
 
     .industry {
-      flex: 0 0 calc((100% - 40px) / 3);
       height: 260px;
       border-radius: 22px;
       padding: 26px;
@@ -712,28 +708,28 @@
       z-index: 1
     }
 
-    .industry.active {
+    .swiper-slide-active .industry {
       transform: scale(1.08);
       z-index: 2
     }
 
-    .industry:nth-child(2) {
+    .swiper-slide:nth-child(2) .industry {
       background: linear-gradient(145deg, #17315e, #5480d8)
     }
 
-    .industry:nth-child(3) {
+    .swiper-slide:nth-child(3) .industry {
       background: linear-gradient(145deg, #0c2948, #276f9d)
     }
 
-    .industry:nth-child(4) {
+    .swiper-slide:nth-child(4) .industry {
       background: linear-gradient(145deg, #262656, #5a5fcb)
     }
 
-    .industry:nth-child(5) {
+    .swiper-slide:nth-child(5) .industry {
       background: linear-gradient(145deg, #0d3040, #348b93)
     }
 
-    .industry:nth-child(6) {
+    .swiper-slide:nth-child(6) .industry {
       background: linear-gradient(145deg, #17233c, #4264a5)
     }
 
@@ -764,29 +760,6 @@
       margin: 0;
       color: #c8d7ff;
       font-size: 13px
-    }
-
-    .slider-controls {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 2px
-    }
-
-    .dot {
-      border: 0;
-      width: 8px;
-      height: 8px;
-      border-radius: 99px;
-      background: #ccd4e8;
-      cursor: pointer;
-      padding: 0;
-      transition: width .35s ease, background .35s ease
-    }
-
-    .dot.active {
-      width: 24px;
-      background: var(--blue)
     }
 
     .case {
@@ -1063,6 +1036,7 @@
       }
     }
   </style>
+  <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 </head>
 
 <body>
@@ -1230,42 +1204,35 @@
           <h2>行业场景</h2>
           <p>以下为官网 MVP 阶段的行业占位展示，可随真实案例持续替换。</p>
         </div>
-        <div class="carousel-wrap reveal">
-          <div class="carousel" id="carousel">
-            <article class="industry"><small>01 / PLACEHOLDER</small>
+        <div class="swiper industries-swiper reveal">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><article class="industry"><small>01 / PLACEHOLDER</small>
               <h3>制造业</h3>
               <p>生产、质量、设备与流程智能化</p>
-            </article>
-            <article class="industry"><small>02 / PLACEHOLDER</small>
+            </article></div>
+            <div class="swiper-slide"><article class="industry"><small>02 / PLACEHOLDER</small>
               <h3>零售电商</h3>
               <p>客户洞察与运营自动化</p>
-            </article>
-            <article class="industry"><small>03 / PLACEHOLDER</small>
+            </article></div>
+            <div class="swiper-slide"><article class="industry"><small>03 / PLACEHOLDER</small>
               <h3>企业服务</h3>
               <p>知识管理与专业工作流</p>
-            </article>
-            <article class="industry"><small>04 / PLACEHOLDER</small>
+            </article></div>
+            <div class="swiper-slide"><article class="industry"><small>04 / PLACEHOLDER</small>
               <h3>人力资源</h3>
               <p>招聘、培训与员工服务</p>
-            </article>
-            <article class="industry"><small>05 / PLACEHOLDER</small>
+            </article></div>
+            <div class="swiper-slide"><article class="industry"><small>05 / PLACEHOLDER</small>
               <h3>销售增长</h3>
               <p>客户研究与销售 Agent</p>
-            </article>
-            <article class="industry"><small>06 / PLACEHOLDER</small>
+            </article></div>
+            <div class="swiper-slide"><article class="industry"><small>06 / PLACEHOLDER</small>
               <h3>企业运营</h3>
               <p>跨系统协同与业务自动化</p>
-            </article>
+            </article></div>
           </div>
         </div>
-        <div class="slider-controls" aria-label="行业场景轮播导航">
-          <button class="dot active" type="button" data-i="0" aria-label="查看制造业"></button>
-          <button class="dot" type="button" data-i="1" aria-label="查看零售电商"></button>
-          <button class="dot" type="button" data-i="2" aria-label="查看企业服务"></button>
-          <button class="dot" type="button" data-i="3" aria-label="查看人力资源"></button>
-          <button class="dot" type="button" data-i="4" aria-label="查看销售增长"></button>
-          <button class="dot" type="button" data-i="5" aria-label="查看企业运营"></button>
-        </div>
+        <div class="swiper-pagination industries-pagination" aria-label="行业场景轮播导航"></div>
       </div>
     </section>
 
@@ -1346,82 +1313,22 @@
       img.parentElement.style.setProperty('--brand-mask', `url("${img.currentSrc || img.src}")`);
     });
 
-    const carousel = document.getElementById('carousel');
-    const carouselWrap = carousel.parentElement;
-    const originalCards = [...carousel.querySelectorAll('.industry')];
-    const dots = [...document.querySelectorAll('.dot')];
-    const cloneCount = 2;
-    let currentPosition = cloneCount;
-    let startX = 0;
-    let isAnimating = false;
-
-    function cloneCards(cardsToClone) {
-      return cardsToClone.map(card => {
-        const clone = card.cloneNode(true);
-        clone.classList.add('industry-clone');
-        clone.style.background = getComputedStyle(card).background;
-        return clone;
-      });
-    }
-
-    carousel.prepend(...cloneCards(originalCards.slice(-cloneCount)));
-    carousel.append(...cloneCards(originalCards.slice(0, cloneCount)));
-    const cards = [...carousel.querySelectorAll('.industry')];
-
-    function logicalIndex(position) {
-      return (position - cloneCount + originalCards.length) % originalCards.length;
-    }
-
-    function render(position, immediate = false) {
-      currentPosition = position;
-      const cardWidth = cards[0].getBoundingClientRect().width;
-      const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
-      const offset = (carouselWrap.clientWidth - cardWidth) / 2 - position * (cardWidth + gap);
-      carousel.style.transitionDuration = immediate ? '0ms' : '';
-      carousel.style.transform = `translateX(${offset}px)`;
-      cards.forEach((card, index) => card.classList.toggle('active', index === position));
-      dots.forEach((dot, index) => {
-        const active = index === logicalIndex(position);
-        dot.classList.toggle('active', active);
-        dot.setAttribute('aria-current', active ? 'true' : 'false');
-      });
-      if (immediate) requestAnimationFrame(() => { carousel.style.transitionDuration = '' });
-    }
-
-    function goTo(index) {
-      const normalized = (index + originalCards.length) % originalCards.length;
-      const basePosition = cloneCount + normalized;
-      const cycleLength = originalCards.length;
-      const candidates = [basePosition - cycleLength, basePosition, basePosition + cycleLength]
-        .filter(position => position >= 0 && position < cards.length);
-      const targetPosition = candidates.reduce((nearest, position) =>
-        Math.abs(position - currentPosition) < Math.abs(nearest - currentPosition) ? position : nearest
-      );
-      if (targetPosition === currentPosition || isAnimating) return;
-      isAnimating = true;
-      render(targetPosition);
-    }
-
-    dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.i)));
-
-    carousel.addEventListener('transitionend', event => {
-      if (event.target !== carousel || event.propertyName !== 'transform') return;
-      if (currentPosition >= cloneCount + originalCards.length) render(cloneCount, true);
-      if (currentPosition < cloneCount) render(cloneCount + originalCards.length - 1, true);
-      isAnimating = false;
+    new Swiper('.industries-swiper', {
+      loop: true,
+      centeredSlides: true,
+      speed: 700,
+      spaceBetween: 20,
+      slidesPerView: 1.15,
+      autoplay: { delay: 2800, disableOnInteraction: false },
+      breakpoints: {
+        768: { slidesPerView: 2.2 },
+        1024: { slidesPerView: 3 }
+      },
+      pagination: {
+        el: '.industries-pagination',
+        clickable: true
+      }
     });
-
-    carouselWrap.addEventListener('pointerdown', event => {
-      startX = event.clientX;
-      carouselWrap.setPointerCapture(event.pointerId);
-    });
-    carouselWrap.addEventListener('pointerup', event => {
-      const dx = event.clientX - startX;
-      if (Math.abs(dx) > 35) goTo(logicalIndex(currentPosition) + (dx < 0 ? 1 : -1));
-    });
-    carouselWrap.addEventListener('pointercancel', event => carouselWrap.releasePointerCapture(event.pointerId));
-    window.addEventListener('resize', () => render(currentPosition, true));
-    render(currentPosition, true);
   </script>
 </body>
 
