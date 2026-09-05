@@ -1402,7 +1402,7 @@
     dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.i)));
 
     carousel.addEventListener('transitionend', event => {
-      if (event.propertyName !== 'transform') return;
+      if (event.target !== carousel || event.propertyName !== 'transform') return;
       if (currentPosition >= cloneCount + originalCards.length) render(cloneCount, true);
       if (currentPosition < cloneCount) render(cloneCount + originalCards.length - 1, true);
     });
