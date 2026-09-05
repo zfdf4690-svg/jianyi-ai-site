@@ -1353,6 +1353,7 @@
     const cloneCount = 2;
     let currentPosition = cloneCount;
     let startX = 0;
+    let isAnimating = false;
 
     function cloneCards(cardsToClone) {
       return cardsToClone.map(card => {
@@ -1396,6 +1397,8 @@
       const targetPosition = candidates.reduce((nearest, position) =>
         Math.abs(position - currentPosition) < Math.abs(nearest - currentPosition) ? position : nearest
       );
+      if (targetPosition === currentPosition || isAnimating) return;
+      isAnimating = true;
       render(targetPosition);
     }
 
@@ -1405,6 +1408,7 @@
       if (event.target !== carousel || event.propertyName !== 'transform') return;
       if (currentPosition >= cloneCount + originalCards.length) render(cloneCount, true);
       if (currentPosition < cloneCount) render(cloneCount + originalCards.length - 1, true);
+      isAnimating = false;
     });
 
     carouselWrap.addEventListener('pointerdown', event => {
@@ -1413,7 +1417,7 @@
     });
     carouselWrap.addEventListener('pointerup', event => {
       const dx = event.clientX - startX;
-      if (Math.abs(dx) > 35) render(currentPosition + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 35) goTo(logicalIndex(currentPosition) + (dx < 0 ? 1 : -1));
     });
     carouselWrap.addEventListener('pointercancel', event => carouselWrap.releasePointerCapture(event.pointerId));
     window.addEventListener('resize', () => render(currentPosition, true));
