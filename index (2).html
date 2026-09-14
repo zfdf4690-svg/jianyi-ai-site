@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
   <style>
     :root {
+      --nav-h: 96px;
       --blue: #2f63e8;
       --blue2: #6f91ff;
       --ink: #10172a;
@@ -91,15 +92,14 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(115deg, #1e55e8 0%, #6c8cff 25%, #67e8d8 48%, #b88cff 72%, #2860ed 100%);
-      background-size: 220% 220%;
+      background: var(--blue);
       -webkit-mask-image: var(--brand-mask);
       mask-image: var(--brand-mask);
       -webkit-mask-repeat: no-repeat;
       mask-repeat: no-repeat;
       -webkit-mask-size: 100% 100%;
       mask-size: 100% 100%;
-      animation: brandAurora 6s ease-in-out infinite
+      animation: none
     }
 
     @keyframes brandAurora {
@@ -168,6 +168,20 @@
       box-shadow: 0 16px 32px rgba(47, 99, 232, .32)
     }
 
+    .hero .hero-actions .btn-primary {
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 999px;
+      background: rgba(47, 99, 232, .72);
+      box-shadow: 0 12px 28px rgba(47, 99, 232, .2), inset 0 1px 0 rgba(255, 255, 255, .35);
+      backdrop-filter: blur(14px) saturate(145%);
+      -webkit-backdrop-filter: blur(14px) saturate(145%)
+    }
+
+    .hero .hero-actions .btn-primary:hover {
+      background: rgba(47, 99, 232, .84);
+      box-shadow: 0 16px 32px rgba(47, 99, 232, .28), inset 0 1px 0 rgba(255, 255, 255, .42)
+    }
+
     .btn-ghost {
       background: #fff;
       border: 1px solid #cbd6ef;
@@ -180,6 +194,8 @@
     }
 
     .hero {
+      position: relative;
+      z-index: 1;
       padding: 66px 0 70px;
       min-height: 660px;
       display: grid;
@@ -187,6 +203,8 @@
     }
 
     .hero-scene {
+      margin-top: calc(-1 * var(--nav-h));
+      padding-top: var(--nav-h);
       min-height: 660px;
       background: url("heroLKV主图.png") center top / cover no-repeat
     }
@@ -693,11 +711,18 @@
       background: var(--blue)
     }
 
+    .industries-pagination {
+      position: static;
+      margin-top: 12px;
+      text-align: center
+    }
+
     .industry {
       height: 260px;
       border-radius: 22px;
       padding: 26px;
       color: #fff;
+      cursor: pointer;
       position: relative;
       overflow: hidden;
       background: linear-gradient(145deg, #112348, #315fc7);
@@ -989,6 +1014,10 @@
     }
 
     @media(max-width:560px) {
+      :root {
+        --nav-h: 64px
+      }
+
       .container {
         width: min(100% - 28px, 1180px)
       }
@@ -1061,8 +1090,7 @@
           <div class="eyebrow">ENTERPRISE AI ENABLEMENT</div>
           <h1>让 AI 真正进入企业<br>创造<span class="gradient">持续增长的价值</span></h1>
           <p>从企业数据、知识与业务流程出发，帮助客户构建真正能够进入工作流的 AI Agent 与智能自动化能力。</p>
-          <div class="hero-actions"><a class="btn btn-primary" href="#contact">预约 AI 业务诊断 →</a><a class="btn btn-ghost"
-              href="#solutions">了解解决方案</a></div>
+          <div class="hero-actions"><a class="btn btn-primary" href="#contact">联系我们 </a></div>
         </div>
         <div class="video-shell reveal" style="transition-delay:.12s">
           <div class="video-frame">
@@ -1316,6 +1344,7 @@
     new Swiper('.industries-swiper', {
       loop: true,
       centeredSlides: true,
+      slideToClickedSlide: true,
       speed: 700,
       spaceBetween: 20,
       slidesPerView: 1.15,
