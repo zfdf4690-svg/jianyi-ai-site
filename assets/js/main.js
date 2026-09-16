@@ -5,10 +5,9 @@ const observer = new IntersectionObserver(entries => entries.forEach(e => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 if (window.Swiper && document.querySelector('.industries-swiper')) {
-  new Swiper('.industries-swiper', {
+  const swiper = new Swiper('.industries-swiper', {
     loop: true,
     centeredSlides: true,
-    slideToClickedSlide: true,
     speed: 700,
     spaceBetween: 20,
     slidesPerView: 1.15,
@@ -21,5 +20,16 @@ if (window.Swiper && document.querySelector('.industries-swiper')) {
       el: '.industries-pagination',
       clickable: true
     }
+  });
+
+  // 点击卡片居中：直接定位到被点卡片在 slides 中的真实下标
+  // 不做 activeIndex+steps 运算（loop 克隆下两个排序不一致会越界到空白轨道）
+  swiper.on('tap', (sw, e) => {
+    const slide = e.target.closest('.swiper-slide');
+    if (!slide) return;
+    const active = sw.slides[sw.activeIndex];
+    if (!active || slide === active) return;
+    const idx = sw.slides.indexOf(slide);
+    if (idx >= 0 && idx !== sw.activeIndex) sw.slideTo(idx, 700);
   });
 }

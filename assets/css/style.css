@@ -124,7 +124,7 @@
       padding: 14px 22px;
       font-weight: 700;
       cursor: pointer;
-      transition: .28s ease;
+      transition: .5s ease;
       font-size: 14px
     }
 
@@ -135,22 +135,23 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
+      border-radius: 999px;
       box-shadow: 0 16px 32px rgba(47, 99, 232, .32)
     }
 
     .hero .hero-actions .btn-primary {
-      border: 1px solid rgba(255, 255, 255, .55);
-      border-radius: 999px;
-      background: rgba(47, 99, 232, .72);
-      box-shadow: 0 12px 28px rgba(47, 99, 232, .2), inset 0 1px 0 rgba(255, 255, 255, .35);
-      backdrop-filter: blur(14px) saturate(145%);
-      -webkit-backdrop-filter: blur(14px) saturate(145%)
+      border: none;
+      border-radius: 12px;
+      background: #2f63e8;
+      box-shadow: 0 12px 28px rgba(47, 99, 232, .25);
+
+
     }
 
     .hero .hero-actions .btn-primary:hover {
-      background: rgba(47, 99, 232, .84);
-      box-shadow: 0 16px 32px rgba(47, 99, 232, .28), inset 0 1px 0 rgba(255, 255, 255, .42)
+      
+      border-radius: 999px;background: rgba(47, 99, 232, .84);
+      box-shadow: 0 16px 32px rgba(47, 99, 232, .32)
     }
 
     .btn-ghost {
@@ -209,8 +210,8 @@
     }
 
     .hero h1 {
-      font-size: clamp(42px, 5.2vw, 70px);
-      line-height: 1.12;
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.15;
       letter-spacing: -.055em;
       margin: 0 0 24px
     }
@@ -225,7 +226,7 @@
     .hero p {
       font-size: 17px;
       line-height: 1.9;
-      color: var(--muted);
+      color: #2b3550;
       max-width: 520px;
       margin: 0 0 30px
     }
@@ -687,7 +688,7 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(145deg, #112348, #315fc7);
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-1.jpg") center / cover no-repeat, #0e1f42;
       transform: scale(1);
       transform-origin: center center;
       transition: transform .72s cubic-bezier(.2, .8, .2, 1);
@@ -700,24 +701,24 @@
       z-index: 2
     }
 
-    .swiper-slide:nth-child(2) .industry {
-      background: linear-gradient(145deg, #17315e, #5480d8)
+    .industry.ind-2 {
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-2.jpg") center / cover no-repeat
     }
 
-    .swiper-slide:nth-child(3) .industry {
-      background: linear-gradient(145deg, #0c2948, #276f9d)
+    .industry.ind-3 {
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-3.jpg") center / cover no-repeat
     }
 
-    .swiper-slide:nth-child(4) .industry {
-      background: linear-gradient(145deg, #262656, #5a5fcb)
+    .industry.ind-4 {
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-4.jpg") center / cover no-repeat
     }
 
-    .swiper-slide:nth-child(5) .industry {
-      background: linear-gradient(145deg, #0d3040, #348b93)
+    .industry.ind-5 {
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-5.jpg") center / cover no-repeat
     }
 
-    .swiper-slide:nth-child(6) .industry {
-      background: linear-gradient(145deg, #17233c, #4264a5)
+    .industry.ind-6 {
+      background: linear-gradient(to top, rgba(8,16,36,.92) 0%, rgba(8,16,36,.35) 55%, rgba(8,16,36,.08) 100%), url("../img/industries/ind-6.jpg") center / cover no-repeat
     }
 
     .industry:after {
@@ -1070,3 +1071,6 @@
   .steps { grid-template-columns: 1fr; }
   .section { padding: 64px 0; }
 }
+
+/* 顶部导航联系我们按钮：加宽，向左延伸减少留白 */
+header .btn-primary { padding: 14px 36px; }
