@@ -8,8 +8,8 @@
 (function () {
   var APP_KEY = 'a_f26b834dade24ff7af50617cc73f4522';
 
-  /* ↓↓↓ 转人工 webhook 配置（已填入 URL；TOKEN 不放在前端，部署转发层后由 Worker/后端持有）↓↓↓ */
-  var WEBHOOK_URL = 'https://xinqiaodigital.feishu.cn/ai/api/v1/skill_runtime/namespaces/spring_ced0cd1b83__c/trigger/304afqgp';
+  /* ↓↓↓ 转人工 webhook 配置（URL 指向 Cloudflare Worker 转发层，token 由 Worker 持有，前端不留密）↓↓↓ */
+  var WEBHOOK_URL = 'https://shiny-band-6cb8.zfdf4690.workers.dev';
   var WEBHOOK_TOKEN = '';
   /* ↑↑↑ 转人工 webhook 配置 ↑↑↑ */
 
@@ -100,12 +100,27 @@
       body: JSON.stringify(payload)
     })
       .then(function (res) {
-        if (res.ok) {
+        return res.text().then(function (bodyText) {
+          var bizOk = false, bizMsg = '';
+          try {
+            var body = JSON.parse(bodyText);
+            if (body && body.data) {
+              if (body.data.code === '0') { bizOk = true; }
+              else if (body.data.message) { bizMsg = body.data.message; }
+            }
+          } catch (err) { /* 非 JSON 响应 */ }
+          return { httpOk: res.ok, status: res.status, bizOk: bizOk, bizMsg: bizMsg };
+        });
+      })
+      .then(function (result) {
+        if (result.httpOk && result.bizOk) {
           formStatus.textContent = '✅ 已提交，人工客服会尽快联系您';
           setTimeout(function () { closeForm(); }, 2500);
         } else {
           formStatus.classList.add('error');
-          formStatus.textContent = '提交失败（HTTP ' + res.status + '），请稍后重试';
+          formStatus.textContent = result.bizMsg
+            ? '提交未成功（' + result.bizMsg + '），请稍后重试或拨打客服电话（待补充）'
+            : '提交失败（HTTP ' + result.status + '），请稍后重试';
           submitBtn.disabled = false;
         }
       })
