@@ -9,7 +9,7 @@
   var APP_KEY = 'a_f26b834dade24ff7af50617cc73f4522';
 
   /* ↓↓↓ 转人工 webhook 配置（URL 指向 Cloudflare Worker 转发层，token 由 Worker 持有，前端不留密）↓↓↓ */
-  var WEBHOOK_URL = 'https://shiny-band-6cb8.zfdf4690.workers.dev';
+  var WEBHOOK_URL = 'https://api.yeshanceng.icu';
   var WEBHOOK_TOKEN = '';
   /* ↑↑↑ 转人工 webhook 配置 ↑↑↑ */
 
